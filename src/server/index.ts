@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json({
     limit: "2mb"
 }));
-app.use(express.static("public"));
+app.use(express.static("./public"));
 app.get("^/$", (req, res) => {
     try {
         const htmlFile = fs.readFileSync(path.resolve("./index.html"), "utf-8");
@@ -31,4 +31,4 @@ app.get("^/$", (req, res) => {
         return res.status(500).send(e);
     }
 })
-app.listen(PORT, () => console.log(`Portal is now online using PORT.`));
+app.listen(PORT, () => console.log(`Portal is now online using PORT ${PORT}.`));
