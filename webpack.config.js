@@ -17,6 +17,7 @@ const common = {
         extensions: [".js", ".ts", ".tsx"],
         alias: {
             'react': path.resolve(__dirname, './node_modules/react'),
+            "styled-components": path.resolve(__dirname, "./node_modules/styled-components"),
         },
     },
     node: {
@@ -29,7 +30,7 @@ module.exports = [{
     target: "web",
     entry: {
         app: {
-            import: "./src/ui/index.tsx",
+            import: "./src/index.tsx",
             dependOn: [
                 "react"
             ]
@@ -37,7 +38,7 @@ module.exports = [{
         react: ["react", "react-dom"],
     },
     output: {
-        path: path.join(__dirname, "public"),
+        path: path.join(__dirname, "scripts"),
         filename: "[name].js"
     },
     optimization: {

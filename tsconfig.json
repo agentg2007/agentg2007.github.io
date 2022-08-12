@@ -1,6 +1,6 @@
 {
   "files": [
-    "./src/ui/index.tsx"
+    "./src/index.tsx"
   ],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
