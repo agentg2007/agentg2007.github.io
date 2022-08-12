@@ -26,16 +26,6 @@ const common = {
 }
 module.exports = [{
     ...common,
-    target: "node",
-    entry: {
-        server: "./src/server/index.ts"
-    },
-    output: {
-        path: path.join(__dirname, "dist"),
-        filename: "[name].js"
-    },
-}, {
-    ...common,
     target: "web",
     entry: {
         app: {
