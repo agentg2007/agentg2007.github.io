@@ -3,4 +3,4 @@ import DOM from "react-dom/client";
 import App from "./app";
 
 const element = document.querySelector("#root");
-element != null && DOM.hydrateRoot(element, <StrictMode><App /></StrictMode>);
+element != null && DOM.createRoot(element, {}).render(<StrictMode><App /></StrictMode>);

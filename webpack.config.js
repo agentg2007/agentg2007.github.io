@@ -18,6 +18,8 @@ const common = {
         alias: {
             'react': path.resolve(__dirname, './node_modules/react'),
             "styled-components": path.resolve(__dirname, "./node_modules/styled-components"),
+            "@components": path.resolve(__dirname, "./src/components/index.ts"),
+            "@mui-components": path.resolve(__dirname, "./src/components/mui-components/index.ts"),
         },
     },
     node: {
