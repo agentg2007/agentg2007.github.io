@@ -1,23 +1,32 @@
+import useFetch from "@nthity/usefetch";
 import React from "react";
 
-import { Alert, Box, Button, ButtonGroup, Typography } from "@mui-components";
-import useFetch from "@nthity/usefetch";
-import { useTheme } from "styled-components";
 import { BorderedPanel } from "@components";
+import {
+    Alert,
+    AlertTitle,
+    Box,
+    Button,
+    ButtonGroup,
+    Container,
+    LinearProgress,
+    Typography,
+    useTheme
+} from "@mui-components";
 
 const UseFetchView = () => {
-    const theme = useTheme()
+    const t = useTheme();
     const {
         status,
+        result,
         abort,
         fetch
     } = useFetch();
-    return <Box sx={{
-        display: "flex",
-        flexDirection: "column",
-        padding: theme.spacing
+    return <Container maxWidth="xl" sx={{
+        marginBottom: t.spacing(3),
+        marginTop: t.spacing(3),
     }}>
-        <Alert color="info" variant="filled" sx={{ marginBottom: "1rem" }}>
+        <Alert color="info" variant="filled" sx={{ marginBottom: t.spacing(2) }}>
             Api result may be too fast with your connection. Try to throttle down your connection in the developer tool.
         </Alert>
         <BorderedPanel>
@@ -27,17 +36,39 @@ const UseFetchView = () => {
                 flexDirection: "column",
                 marginBottom: "1rem"
             }}>
-                <Typography variant="h5" component="div">UseFetch Basic.</Typography>
-                <Typography variant="overline">API: https://random-data-api.com/api/address/random_address</Typography>
-                <Alert>{status}</Alert>
+                <Typography variant="h5" component="div">UseFetch Demo.</Typography>
+                <Typography variant="caption">API: https://random-data-api.com/api/address/random_address</Typography>
+                <StatusIndicator status={status} message={result?.statusText} />
             </Box>
             <ButtonGroup>
-                <Button onClick={() => fetch("https://random-data-api.com/api/address/random_address")}>Send</Button>
+                <Button onClick={() => fetch("https://random-data-api.com/api/address/random_address?_t=" + Date.now())}>Send</Button>
                 <Button disabled={status !== "busy"} onClick={abort}>Abort</Button>
             </ButtonGroup>
         </BorderedPanel>
-
-    </Box>
+    </Container>
 };
 UseFetchView.displayName = "UseFetchView";
 export default UseFetchView;
+
+const StatusIndicator = ({ message, status }: {
+    message: string;
+    status: "busy" | "aborted" | "error" | "idle";
+}) => {
+    switch (status) {
+        case "busy": return <LinearProgress color="primary" />
+        case "error": return <Alert color="error">
+            <AlertTitle>Error</AlertTitle>
+            {message}
+        </Alert>;
+        case "aborted": return <Alert color="info">
+            <AlertTitle>Request Aborted</AlertTitle>
+            Your request was successfully aborted.
+        </Alert>;
+        default: return <Alert color="success">
+            <AlertTitle>
+                <Typography variant="overline">{status}</Typography>
+            </AlertTitle>
+        </Alert>
+    }
+};
+StatusIndicator.displayName = "StatusIndicator";

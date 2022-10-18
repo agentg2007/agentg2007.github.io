@@ -2,7 +2,7 @@ const path = require("path")
 
 const common = {
     devtool: "eval-source-map",
-    mode: "development",
+    mode: "production",
     plugins: [],
     module: {
         rules: [
@@ -34,9 +34,10 @@ module.exports = [{
         app: {
             import: "./src/index.tsx",
             dependOn: [
-                "react"
+                "react", "mui"
             ]
         },
+        mui: ["@mui/material", "@emotion/react", "@emotion/styled"],
         react: ["react", "react-dom"],
     },
     output: {
