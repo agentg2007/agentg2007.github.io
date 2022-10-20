@@ -4,4 +4,5 @@ export const BorderedPanel = styled.div`
     padding: 1rem;
     display: flex;
     flex-direction: column;
+    margin-bottom: 1rem;
 `;

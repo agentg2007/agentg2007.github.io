@@ -1,11 +1,11 @@
 import useFetch from "@nthity/usefetch";
 import React from "react";
+import ReactMarkdown from "react-markdown";
 
 import { BorderedPanel } from "@components";
 import {
     Alert,
     AlertTitle,
-    Box,
     Button,
     ButtonGroup,
     Container,
@@ -14,6 +14,20 @@ import {
     useTheme
 } from "@mui-components";
 
+const usage = `
+\`\`\`
+import useFetch from "@nthity/usefetch";
+
+const App = () => {
+    const { status, result, abort, fetch } = useFetch();
+    return <div>
+        <p>{status}</p>
+        <button onClick={() => fetch("[your URL]")}>Send</button>
+        <button disabled={status !== "busy"} onClick={abort}>Abort</button>
+    </div>
+}
+\`\`\`
+`
 const UseFetchView = () => {
     const t = useTheme();
     const {
@@ -26,21 +40,30 @@ const UseFetchView = () => {
         marginBottom: t.spacing(3),
         marginTop: t.spacing(3),
     }}>
-        <Alert color="info" variant="filled" sx={{ marginBottom: t.spacing(2) }}>
-            Api result may be too fast with your connection. Try to throttle down your connection in the developer tool.
-        </Alert>
         <BorderedPanel>
-            <Box sx={{
-                flex: 1,
-                display: "flex",
-                flexDirection: "column",
-                marginBottom: "1rem"
-            }}>
-                <Typography variant="h5" component="div">UseFetch Demo.</Typography>
-                <Typography variant="caption">API: https://random-data-api.com/api/address/random_address</Typography>
-                <StatusIndicator status={status} message={result?.statusText} />
-            </Box>
-            <ButtonGroup>
+            <Typography variant="h5">UseFetch</Typography>
+            <Typography variant="body1">
+                UseFetch is an easy to use fetch manager hook for react. It uses built-in browser's fetch method to call your API.
+            </Typography>
+        </BorderedPanel>
+        <BorderedPanel>
+            <Typography variant="h5">Installation</Typography>
+            <Typography>
+                npm install @nthity/usefetch
+            </Typography>
+        </BorderedPanel>
+        <BorderedPanel>
+            <Typography variant="h5">Usage</Typography>
+            <ReactMarkdown>{usage}</ReactMarkdown>
+        </BorderedPanel>
+        <BorderedPanel>
+            <Typography variant="h5">Demo.</Typography>
+            <Typography variant="caption">API: https://random-data-api.com/api/address/random_address</Typography>
+            <Alert color="info" variant="filled" sx={{ margin: t.spacing(0, 0, 2) }}>
+                Api result may be too fast with your connection. Try to throttle down your connection in the developer tool.
+            </Alert>
+            <StatusIndicator status={status} message={result?.statusText} />
+            <ButtonGroup sx={{ marginTop: t.spacing(2) }}>
                 <Button onClick={() => fetch("https://random-data-api.com/api/address/random_address?_t=" + Date.now())}>Send</Button>
                 <Button disabled={status !== "busy"} onClick={abort}>Abort</Button>
             </ButtonGroup>
