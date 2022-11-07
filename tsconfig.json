@@ -28,10 +28,16 @@
 		"skipLibCheck": true, /* Skip type checking all .d.ts files. */
 		"paths": {
 			"@mui-components": [
-				"./src/components/mui-components/index.ts"
+				"src/mui/components/index.ts"
+			],
+			"@mui-icons": [
+				"src/mui/icons/index.ts"
 			],
 			"@components": [
 				"./src/components/index.ts"
+			],
+			"@hooks": [
+				"./src/hooks/index.ts"
 			]
 		}
 	}

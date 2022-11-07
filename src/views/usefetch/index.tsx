@@ -40,15 +40,16 @@ const UseFetchView = () => {
         marginBottom: t.spacing(3),
         marginTop: t.spacing(3),
     }}>
+        <Typography variant="h3">UseFetch</Typography>
         <BorderedPanel>
-            <Typography variant="h5">UseFetch</Typography>
+            <Typography variant="h5">Introduction</Typography>
             <Typography variant="body1">
                 UseFetch is an easy to use fetch manager hook for react. It uses built-in browser's fetch method to call your API.
             </Typography>
         </BorderedPanel>
         <BorderedPanel>
             <Typography variant="h5">Installation</Typography>
-            <Typography>
+            <Typography variant="body1">
                 npm install @nthity/usefetch
             </Typography>
         </BorderedPanel>

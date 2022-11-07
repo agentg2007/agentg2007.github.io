@@ -1,0 +1,1 @@
+export { default as BrokenImage } from "@mui/icons-material/BrokenImage"
