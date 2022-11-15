@@ -31,7 +31,8 @@ const App = () => {
                                 id: "home",
                                 title: "Home",
                                 url: "/#",
-                            }, {
+                            },
+                            {
                                 id: "NodeModules",
                                 title: "Node Modules",
                             },
@@ -42,11 +43,17 @@ const App = () => {
                             //     url: "#/withvalidation"
                             // },
                             {
-                                id: "UseFetch-Demo",
+                                id: "UseFetch-View",
                                 parentId: "NodeModules",
                                 title: "UseFetch",
                                 url: "#/usefetch",
-                            }
+                            },
+                            // {
+                            //     id: "UseFetch-View-Demo",
+                            //     parentId: "UseFetch-View",
+                            //     title: "Demo",
+                            //     url: "#/usefetch?section=demo"
+                            // }
                         ]}
                     >
                         <Suspense fallback={<>Loading...</>}>

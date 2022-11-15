@@ -1,1 +1,1 @@
-export { BorderedPanel } from "./panel"
+export { default as Panel } from "./panel"

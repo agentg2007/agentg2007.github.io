@@ -1,8 +1,9 @@
-import useFetch from "@nthity/usefetch";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 
-import { BorderedPanel } from "@components";
+import useFetch from "@nthity/usefetch";
+
+import { Panel } from "@components";
 import {
     Alert,
     AlertTitle,
@@ -15,7 +16,7 @@ import {
 } from "@mui-components";
 
 const usage = `
-\`\`\`
+\`\`\`typescript
 import useFetch from "@nthity/usefetch";
 
 const App = () => {
@@ -41,24 +42,26 @@ const UseFetchView = () => {
         marginTop: t.spacing(3),
     }}>
         <Typography variant="h3">UseFetch</Typography>
-        <BorderedPanel>
-            <Typography variant="h5">Introduction</Typography>
+        <Panel>
             <Typography variant="body1">
                 UseFetch is an easy to use fetch manager hook for react. It uses built-in browser's fetch method to call your API.
             </Typography>
-        </BorderedPanel>
-        <BorderedPanel>
-            <Typography variant="h5">Installation</Typography>
-            <Typography variant="body1">
-                npm install @nthity/usefetch
-            </Typography>
-        </BorderedPanel>
-        <BorderedPanel>
-            <Typography variant="h5">Usage</Typography>
+        </Panel>
+        <Panel bordered title="Installation">
+            npm install @nthity/usefetch
+        </Panel>
+        <Panel bordered title="Features">
+            <ul>
+                <li>Fetch management.</li>
+                <li>Cancelable queries.</li>
+                <li>Ensures only 1 fetching is called.</li>
+                <li>Prevents data leaking by previous call.</li>
+            </ul>
+        </Panel>
+        <Panel bordered title="Usage">
             <ReactMarkdown>{usage}</ReactMarkdown>
-        </BorderedPanel>
-        <BorderedPanel>
-            <Typography variant="h5">Demo.</Typography>
+        </Panel>
+        <Panel bordered title="Demo">
             <Typography variant="caption">API: https://random-data-api.com/api/address/random_address</Typography>
             <Alert color="info" variant="filled" sx={{ margin: t.spacing(0, 0, 2) }}>
                 Api result may be too fast with your connection. Try to throttle down your connection in the developer tool.
@@ -68,7 +71,10 @@ const UseFetchView = () => {
                 <Button onClick={() => fetch("https://random-data-api.com/api/address/random_address?_t=" + Date.now())}>Send</Button>
                 <Button disabled={status !== "busy"} onClick={abort}>Abort</Button>
             </ButtonGroup>
-        </BorderedPanel>
+        </Panel>
+        <Panel bordered title="Repository">
+            https://github.com/agentg2007/useFetch
+        </Panel>
     </Container>
 };
 UseFetchView.displayName = "UseFetchView";
